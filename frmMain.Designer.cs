@@ -173,10 +173,6 @@
             // cmbTeleportLocation
             // 
             this.cmbTeleportLocation.FormattingEnabled = true;
-            this.cmbTeleportLocation.Items.AddRange(new object[] {
-            "Limsa Lominsa",
-            "New Gridania",
-            "Ul\'Dah"});
             this.cmbTeleportLocation.Location = new System.Drawing.Point(85, 27);
             this.cmbTeleportLocation.Name = "cmbTeleportLocation";
             this.cmbTeleportLocation.Size = new System.Drawing.Size(101, 21);

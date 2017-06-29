@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Quack.Settings;
 using ff14bot;
+using ff14bot.Managers;
 
 namespace Quack_
 {
@@ -15,6 +16,12 @@ namespace Quack_
         {
             chkLogout.Checked = Quack.settings.Logout;
             chkTeleport.Checked = Quack.settings.Teleport;
+
+            foreach(var item in WorldManager.AvailableLocations)
+            {
+                cmbTeleportLocation.Items.Add(item.Name);
+            }
+
             cmbTeleportLocation.Text = Quack.settings.TeleportLocation;
         }
 

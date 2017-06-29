@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading;
+using System.Linq;
 using ff14bot;
 using ff14bot.Helpers;
 using ff14bot.Interfaces;
@@ -81,13 +82,20 @@ namespace Quack_
                         if (Core.Player.IsMounted)
                         {
                             Thread.Sleep(1000);
-                            Actionmanager.Dismount();
+                            ActionManager.Dismount();
                             Thread.Sleep(1000);
                         }
 
-                        WorldManager.Teleport(settings.TeleportLocation);
-                        Thread.Sleep(20000);
+                        UInt32 locationId = WorldManager.AvailableLocations
+                                            .Where(a => a.Name == settings.TeleportLocation)
+                                            .Select(a => a.AetheryteId)
+                                            .FirstOrDefault();
 
+                        if (locationId != null)
+                        {
+                            WorldManager.TeleportById(locationId);
+                            Thread.Sleep(20000);
+                        }
                     }
 
                     if (settings.Logout)
